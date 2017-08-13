@@ -1,6 +1,7 @@
 #ifndef PARSING_H
 #define PARSING_H
 #include <vector>
+#include <string>
 #include "definitions.h"
 #include "engine.h"
 #include "token.h"
@@ -8,7 +9,7 @@
 #include "node.h"
 #include "engine.h"
 class Engine;
-Engine* globalengine = NULL;
+extern Engine* globalengine;
 AST* parse(Engine*,std::vector<Token>); //top level parser
 Node* buildRoot(std::vector<Token>); //builds AST root
 Node* build(std::vector<Token>); //determines type, then builds it

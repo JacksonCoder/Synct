@@ -4,10 +4,11 @@
 #include "enviroment.h"
 #include "engine.h"
 #include "fmanager.h"
+#include <string>
 class CompilerLayer
 {
         Enviroment* e;
-        std::vector<std::string> arguments;
+        std::vector<std::pair<std::string,std::string> > arguments;
 	Engine* engine;
 	FManager* fmanager;
         public:
