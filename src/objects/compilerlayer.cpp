@@ -1,6 +1,7 @@
 //compilerlayer.cpp
 #include "../include/compilerlayer.h"
 #include "../include/log.h"
+#include <fstream>
 using namespace std;
 namespace local {
 	//move this to be a global utility
@@ -51,14 +52,14 @@ CompilerLayer::CompilerLayer(int argc,char** argv)
 	}
 	if(local::v_find(local::cmdoptions,string(argv[1])))
 	{
-		if(argv[1] == "compile")
+		if(std::string(argv[1]) == "compile")
 		{
 			for(int argc_i = 2; argc_i < argc;argc_i++)
-			{
+			{	
 				if(local::v_find(local::scommand_table,argv[argc_i]))
-					this->arguments.push_back({string(argv[argc_i]),NULL});
+					this->arguments.push_back({string(argv[argc_i]),""});
 				if(local::v_find(local::secommand_table,argv[argc_i]))
-					engineargs.push_back({string(argv[argc_i]),NULL});
+					engineargs.push_back({string(argv[argc_i]),""});
 				if(local::v_find(local::dcommand_table,string(argv[argc_i])))
 				{
 					auto argument = argv[argc_i+1];
@@ -75,18 +76,36 @@ CompilerLayer::CompilerLayer(int argc,char** argv)
                                 }
 				
 			}
-			this->engine = new Engine(engineargs);
-			//engine->lex();
+			//put this logic in fmanager structure later
+			std::string outfile;
+			for(auto a : arguments) if(a.first == "-o") outfile = a.second;
+			fstream f;
+			f.open(outfile);
+			if(!f.is_open())
+			{
+				lnprint("Could not open the file '" + outfile + "'");
+				exit(0);
+			}
+			std::string fcontents;
+			while(!f.eof())
+			{
+				std::string temp;
+				getline(f,temp,'\n');
+				fcontents += temp + "\n";
+			}
+			lnprint(fcontents);
+			this->engine = new Engine(engineargs,fcontents);
+			engine->lex();
 			//engine->printLex();
 			//engine->parse();
 			//engine->printAST();
 		}
-		else if(argv[1] == "version")
+		else if(std::string(argv[1]) == "version")
 		{
 			local::print_version();
 			exit(0);
 		}
-		else if(argv[1] == "help")
+		else if(std::string(argv[1]) == "help")
 		{
 			local::print_help();
 			exit(0);
@@ -98,10 +117,4 @@ CompilerLayer::CompilerLayer(int argc,char** argv)
 		local::print_help();
 		exit(0);
 	}
-	/*
-	for(int argc_i = 2; argc_i < argc; argc_i)
-	{
-		
-	}
-	*/
 }

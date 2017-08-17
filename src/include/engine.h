@@ -11,12 +11,12 @@ class Engine {
 	std::vector<Token> postlex;
 	std::vector<AST*> postparse;
 	std::vector<std::pair<std::string,std::string> > arguments;
-	std::vector<std::string> filecontents;
+	std::string filecontents;
 	AST* postlink;
 	std::string postassemble;
 	void addlog(std::string,LogType,int);
 	public:
-		Engine(std::vector<std::pair<std::string,std::string> >);
+		Engine(std::vector<std::pair<std::string,std::string> >,std::string);
 		void lex();
 		void parse();
 		std::string outputLex();

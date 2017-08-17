@@ -1,5 +1,7 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
+#include <vector>
+#include <string>
 //
 //Parsing
 //
@@ -63,7 +65,9 @@ enum TokenType
 	SUBTRACTOP,
 	DIVIDEOP,
 	MULTIPLYOP,
-	MODULOOP
+	MODULOOP,
+	OPAREN,
+	CPAREN
 };
 
 //
@@ -76,4 +80,5 @@ enum LogType
 	NOTE,
 	DEBUG
 };
+extern std::vector<std::pair<TokenType,std::string> > lex_table;
 #endif

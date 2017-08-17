@@ -3,11 +3,12 @@
 #include "definitions.h"
 class Token
 {
+	public: //temporary
 	TokenType tokentype;
 	int line;
 	int scope;
-	public:
-	Token(TokenType);
+	std::string value;
+	Token(TokenType t,std::string s): tokentype(t),value(s) {}
 	void setLine(int);
 	void setScope(int);
 	int getLine();
