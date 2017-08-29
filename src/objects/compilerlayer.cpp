@@ -14,7 +14,7 @@ namespace local {
 	{
 		lnprint("Synct: A versatile, powerful, and flexible language");
 		lnprint("Developed exclusively by Jackson Lewis. All rights reserved.");
-		lnprint("Synct is licensed under the MIT license. You can find more about this license online");
+		lnprint("Synct is licensed under the MIT license. You can find more about this license online.");
 		lnprint("Current version is 0.0.3");
 	}
 	void print_help()
