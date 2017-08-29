@@ -1,3 +1,5 @@
+![Synct logo](https://image.ibb.co/dFUrCQ/my_logo.png "Synct logo")
+
 Synct: The modern sucessor to C++/Java
 -------
 
@@ -10,11 +12,10 @@ Features include:
 - Inline python scripting
 - Low-level capabilties, such as manual memory allocation
 - Memory safe
-- Built in support for asyncronous functions
-- 
+- Built in support for asyncronous functions 
 
 Current Version:
-0.1.1
+0.0.3
 
 About
 --------
